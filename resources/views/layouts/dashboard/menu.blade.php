@@ -6,6 +6,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
+                <a class="nav-link {{ request()->is('menu-category') ? 'active' : '' }}" href="{{ route('admin.menu.category') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-utensils"></i></div>
+                    Menu Category
+                </a>
                 <a class="nav-link {{ request()->is('menu') || request()->is('menu/new') ? 'active' : '' }}" href="{{ route('admin.menu') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-utensils"></i></div>
                     Menu

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\MenuCategoryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -27,6 +28,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Routes for admin dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
+
+Route::get('/menu-category', [MenuCategoryController::class, 'index'])->name('admin.menu.category');
 
 Route::get('/menu', [MenuController::class, 'index'])->name('admin.menu');
 Route::get('/menu/new', [MenuController::class, 'create'])->name('admin.menu.new');

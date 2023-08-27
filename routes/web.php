@@ -30,6 +30,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
 Route::get('/menu-category', [MenuCategoryController::class, 'index'])->name('admin.menu.category');
+Route::post('/menu-category', [MenuCategoryController::class, 'store'])->name('admin.menu.category.store');
 
 Route::get('/menu', [MenuController::class, 'index'])->name('admin.menu');
 Route::get('/menu/new', [MenuController::class, 'create'])->name('admin.menu.new');

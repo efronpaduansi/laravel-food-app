@@ -17,7 +17,7 @@
                             <th>#</th>
                             <th>Thumbnail</th>
                             <th>Menu</th>
-                            <th>kategori</th>
+                            <th>Kategori</th>
                             <th>Stok</th>
                             <th>Harga</th>
                             <th>Aksi</th>

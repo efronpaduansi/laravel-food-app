@@ -11,9 +11,9 @@ class Menu extends Model
     use HasFactory;
     protected $table = 'menus';
     protected $fillable = [
+        'category_id',
         'thumbnail',
         'name',
-        'category',
         'stock',
         'price',
     ];
@@ -23,6 +23,6 @@ class Menu extends Model
     }
 
     public function category(){
-        return $this->belongsTo(MenuCategory::class, 'category', 'id');
+        return $this->belongsTo(MenuCategory::class, 'category_id', 'id');
     }
 }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Menu;
-use Session;
 use DB;
+use Session;
 use Validator;
+use App\Models\Menu;
+use App\Models\MenuCategory;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MenuController extends Controller
 {
@@ -19,7 +20,8 @@ class MenuController extends Controller
 
     public function create()
     {
-        return view('dashboard.menus.create');
+        $categories = MenuCategory::latest()->get();
+        return view('dashboard.menus.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -46,9 +48,9 @@ class MenuController extends Controller
          $request->menu_img->move(public_path('images/menu'), $imageName);
 
         $menu = new Menu();
+        $menu->category_id = $request->menu_category;
         $menu->thumbnail = $imageName;
         $menu->name = $request->menu_name;
-        $menu->category = $request->menu_category;
         $menu->stock = $request->menu_stock;
         $menu->price = $request->menu_price;
         $menu->save();
@@ -64,8 +66,9 @@ class MenuController extends Controller
 
     public function edit($id)
     {
+        $categories = MenuCategory::latest()->get();
         $menu = Menu::find($id);
-        return view('dashboard.menus.edit', compact('menu'));
+        return view('dashboard.menus.edit', compact('categories','menu'));
     }
 
     public function update(Request $request)

@@ -1,11 +1,11 @@
 @extends('layouts.dashboard.app')
 
-@section('title', 'Menu Category')
+@section('title', 'Data Pembelian')
 
 @section('content')
     <main>
         <div class="container-fluid px-4 mt-4">
-            <h4 class="my-4">Kategori Menu</h4>
+            <h4 class="my-4">Data Pembelian</h4>
             <div class="card mb-4">
                 <div class="card-header">
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal"><i
@@ -16,24 +16,25 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nama Kategori</th>
+                                <th>Nama Barang</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                                <th>Total</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($pembelians as $item)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->category_name }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_barang }}</td>
+                                    <td>{{ $item->harga }}</td>
+                                    <td>{{ $item->jumlah }}</td>
+                                    <td>{{ $item->total }}</td>
                                     <td>
-                                        <form action="{{ route('admin.menu.category.destroy') }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="id" value="{{ $category->id }}">
-                                            <button type="submit" class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Yakin menghapus data ini?')"><i
-                                                    class="fa-solid fa-xmark"></i></button>
-                                        </form>
+                                        <a href="" class="text-danger"
+                                            onclick="return confirm('Yakin menghapus data ini?')"><i
+                                                class="fa-solid fa-xmark"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

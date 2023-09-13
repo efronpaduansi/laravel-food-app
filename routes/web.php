@@ -13,6 +13,7 @@ use App\Http\Controllers\Guest\GuestController;
 use App\Http\Controllers\Admin\ReturnController;
 
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PembelianController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\MenuCategoryController;
 
@@ -30,8 +31,11 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 // Routes for admin dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
+Route::get('/pembelian', [PembelianController::class, 'index'])->name('admin.pembelian');
+
 Route::get('/menu-category', [MenuCategoryController::class, 'index'])->name('admin.menu.category');
 Route::post('/menu-category', [MenuCategoryController::class, 'store'])->name('admin.menu.category.store');
+Route::delete('/menu-category', [MenuCategoryController::class, 'destroy'])->name('admin.menu.category.destroy');
 
 Route::get('/menu', [MenuController::class, 'index'])->name('admin.menu');
 Route::get('/menu/new', [MenuController::class, 'create'])->name('admin.menu.new');

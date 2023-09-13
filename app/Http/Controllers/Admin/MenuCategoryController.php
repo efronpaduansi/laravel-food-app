@@ -22,4 +22,14 @@ class MenuCategoryController extends Controller
             return redirect()->back()->with('error', 'Gagal menambahkan data!');
         }
     }
+
+    public function destroy(Request $request)
+    {
+        if(MenuCategory::findOrFail($request->id)->delete()){
+            return redirect()->back()->with('success', 'Pesanan berhasil dihapus!');
+        }else{
+            return redirect()->back()->with('error', 'Pesanan berhasil dihapus!');
+
+        }
+    }
 }

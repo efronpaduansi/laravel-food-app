@@ -14,4 +14,14 @@ class ReturnController extends Controller
         $orders = Booking::where('status', $status)->get();
         return view('dashboard.return.manage', compact('orders'));
     }
+
+    public function destory($id)
+    {
+        if(Booking::findOrFail($id)->delete()){
+            return redirect()->back()->with('success', 'Berhasil menghapus data!');
+        }else{
+            return redirect()->back()->with('error', 'Gagal menghapus data!');
+        }
+        
+    }
 }

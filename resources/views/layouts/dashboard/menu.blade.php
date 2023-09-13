@@ -6,6 +6,11 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
+                <a class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}"
+                    href="{{ route('admin.pembelian') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-sort-numeric-down"></i></div>
+                    Pembelian
+                </a>
                 <a class="nav-link {{ request()->is('menu-category') ? 'active' : '' }}"
                     href="{{ route('admin.menu.category') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-utensils"></i></div>

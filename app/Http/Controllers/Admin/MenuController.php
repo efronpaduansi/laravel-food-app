@@ -118,10 +118,4 @@ class MenuController extends Controller
         return redirect('/menu')->with('success', 'Berhasil mengubah data!');
     }
 
-    public function delete($id)
-    {
-        $menu = Menu::find($id);
-        $menu->delete();
-        return redirect('/menu')->with('success', 'Berhasil menghapus data!');
-    }
 }

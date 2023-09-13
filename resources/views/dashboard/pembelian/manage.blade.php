@@ -8,7 +8,7 @@
             <h4 class="my-4">Data Pembelian</h4>
             <div class="card mb-4">
                 <div class="card-header">
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal"><i
+                    <a href="{{ route('admin.pembelian.create') }}" class="btn btn-primary"><i
                             class="fa-solid fa-circle-plus"></i> Tambah Baru</a>
                 </div>
                 <div class="card-body">
@@ -28,13 +28,18 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama_barang }}</td>
-                                    <td>{{ $item->harga }}</td>
+                                    <td>{{ 'Rp. ' . number_format($item->harga, 2, ',', ',') }}</td>
                                     <td>{{ $item->jumlah }}</td>
-                                    <td>{{ $item->total }}</td>
+                                    <td>{{ 'Rp. ' . number_format($item->total, 2, ',', ',') }}</td>
                                     <td>
-                                        <a href="" class="text-danger"
-                                            onclick="return confirm('Yakin menghapus data ini?')"><i
-                                                class="fa-solid fa-xmark"></i></a>
+                                        <form action="{{ route('admin.pembelian.destroy') }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Yakin menghapus data ini?')"><i
+                                                    class="fas fa-times"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

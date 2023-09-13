@@ -32,6 +32,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
 Route::get('/pembelian', [PembelianController::class, 'index'])->name('admin.pembelian');
+Route::get('/pembelian/create', [PembelianController::class, 'create'])->name('admin.pembelian.create');
+Route::post('/pembelian/create', [PembelianController::class, 'store'])->name('admin.pembelian.store');
+Route::delete('/pembelian', [PembelianController::class, 'destroy'])->name('admin.pembelian.destroy');
 
 Route::get('/menu-category', [MenuCategoryController::class, 'index'])->name('admin.menu.category');
 Route::post('/menu-category', [MenuCategoryController::class, 'store'])->name('admin.menu.category.store');

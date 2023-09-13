@@ -6,7 +6,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->is('pembelian') || request()->is('pembelian/create') ? 'active' : '' }}"
                     href="{{ route('admin.pembelian') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-sort-numeric-down"></i></div>
                     Pembelian

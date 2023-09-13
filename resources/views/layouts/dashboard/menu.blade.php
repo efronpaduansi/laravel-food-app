@@ -6,11 +6,13 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link {{ request()->is('menu-category') ? 'active' : '' }}" href="{{ route('admin.menu.category') }}">
+                <a class="nav-link {{ request()->is('menu-category') ? 'active' : '' }}"
+                    href="{{ route('admin.menu.category') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-utensils"></i></div>
                     Menu Category
                 </a>
-                <a class="nav-link {{ request()->is('menu') || request()->is('menu/new') ? 'active' : '' }}" href="{{ route('admin.menu') }}">
+                <a class="nav-link {{ request()->is('menu') || request()->is('menu/new') ? 'active' : '' }}"
+                    href="{{ route('admin.menu') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-utensils"></i></div>
                     Menu
                 </a>
@@ -22,23 +24,26 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Orders
                 </a>
-                <a class="nav-link collapsed {{ request()->is('transaction') ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed {{ request()->is('transaction') ? 'active' : '' }}" href="#"
+                    data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
+                    aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-right-left"></i></div>
                     Transaksi
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('admin.payments') }}">Pembayaran</a>
                         <a class="nav-link" href="{{ route('admin.transactions') }}">Transaksi Keluar</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Return</a>
+                        <a class="nav-link" href="{{ route('admin.return') }}">Return</a>
                     </nav>
                 </div>
             </div>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-             {{ Auth()->user()->name }} 
+            {{ Auth()->user()->name }}
         </div>
     </nav>
 </div>

@@ -1,19 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\MenuCategoryController;
-use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\PaymentController;
-
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\Web\AuthController;
-
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Guest\BookController;
+use App\Http\Controllers\Admin\OrderController;
+
 use App\Http\Controllers\Guest\GuestController;
+use App\Http\Controllers\Admin\ReturnController;
+
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\MenuCategoryController;
 
 
 // Routes for web landing
@@ -51,6 +52,8 @@ Route::get('/order/status/cancel/{id}', [OrderController::class, 'statusChangeTo
 Route::get('/payments', [PaymentController::class, 'index'])->name('admin.payments');
 Route::get('/transactions', [TransactionController::class, 'index'])->name('admin.transactions');
 Route::delete('/transactions', [TransactionController::class, 'deleteById'])->name('admin.transactions.delete');
+
+Route::get('/return', [ReturnController::class, 'index'])->name('admin.return');
 
 
 // Routes for guest dashboard

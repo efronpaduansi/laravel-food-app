@@ -13,7 +13,7 @@
                             <h1 class="font-weight-bold">{{ $totalMenu }}</h1>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Menu Tersedia</a>
+                            <a class="small text-white stretched-link" href="{{ route('admin.menu') }}">Menu Tersedia</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -24,7 +24,8 @@
                             <h1 class="font-weight-bold">{{ $orderWaitingConfirm }}</h1>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Menunggu Konfirmasi</a>
+                            <a class="small text-white stretched-link" href="{{ route('admin.order') }}">Menunggu
+                                Konfirmasi</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -35,7 +36,8 @@
                             <h1 class="font-weight-bold">{{ $orderDone }}</h1>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Order Selesai</a>
+                            <a class="small text-white stretched-link" href="{{ route('admin.transactions') }}">Order
+                                Selesai</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -46,7 +48,8 @@
                             <h1 class="font-weight-bold">{{ $orderCancelled }}</h1>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Order Dibatalkan</a>
+                            <a class="small text-white stretched-link" href="{{ route('admin.return') }}">Order
+                                Dibatalkan</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>

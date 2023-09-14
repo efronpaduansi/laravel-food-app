@@ -9,8 +9,13 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    
     public function index()
     {
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
+        
         $statusWaitingConfirm = 'Diterima';
         $statusDone = 'Selesai';
         $statusCancelled = 'Dibatalkan';

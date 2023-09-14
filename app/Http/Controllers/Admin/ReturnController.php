@@ -10,6 +10,9 @@ class ReturnController extends Controller
 {
     public function index()
     {
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
         $status = 'Dibatalkan';
         $orders = Booking::where('status', $status)->get();
         return view('dashboard.return.manage', compact('orders'));

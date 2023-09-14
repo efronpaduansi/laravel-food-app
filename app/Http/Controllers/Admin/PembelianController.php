@@ -10,6 +10,9 @@ class PembelianController extends Controller
 {
     public function index()
     {
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
         $pembelians = Pembelian::latest()->get();
         return view('dashboard.pembelian.manage', compact('pembelians'));
     }

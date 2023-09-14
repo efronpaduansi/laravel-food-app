@@ -14,6 +14,9 @@ class MenuController extends Controller
 {
     public function index()
     {
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
         $menus = Menu::all();
         return view('dashboard.menus.manage', compact('menus'));
     }

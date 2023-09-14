@@ -8,6 +8,9 @@ use App\Models\MenuCategory;
 class MenuCategoryController extends Controller
 {
     public function index(){
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
         $categories = MenuCategory::all();
         return view('dashboard.menu_category.manage', compact('categories'));
     }

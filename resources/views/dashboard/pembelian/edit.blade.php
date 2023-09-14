@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <div class="container-fluid px-4 mt-4">
-            <h4 class="my-4">Tambah Data Pembelian</h4>
+            <h4 class="my-4">Ubah Data Pembelian</h4>
             <div class="card mb-4">
                 <div class="card-header">
                     <a href="{{ route('admin.pembelian') }}" class="btn btn-sm btn-secondary"><i
@@ -13,24 +13,26 @@
                         Kembali</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.pembelian.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.pembelian.update') }}" method="POST">
                         @csrf
+                        @method('PUT')
+                        <input type="hidden" name="id" value="{{ $pembelian->id }}">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="nama_barang">Nama Barang</label>
                                 <input type="text" name="nama_barang" id="nama_barang"
                                     class="form-control my-1 @error('nama_barang') is-invalid @enderror" autofocus
-                                    placeholder="Masukan nama menu" required>
+                                    placeholder="Masukan nama menu" value="{{ $pembelian->nama_barang }}" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="harga">Harga</label>
                                 <input type="number" name="harga" id="harga" class="form-control"
-                                    placeholder="Masukan harga" required>
+                                    placeholder="Masukan harga" value="{{ $pembelian->harga }}" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="jumlah">Jumlah</label>
                                 <input type="number" name="jumlah" id="jumlah" class="form-control"
-                                    placeholder="Masukan jumlah belanja" required>
+                                    placeholder="Masukan jumlah belanja" value="{{ $pembelian->jumlah }}" required>
                             </div>
                         </div>
                         <div class="tombol d-inline justify-content-left">

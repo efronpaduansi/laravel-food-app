@@ -35,6 +35,30 @@ class PembelianController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $pembelian = Pembelian::findOrFail($id)->first();
+        return view('dashboard.pembelian.edit', compact('pembelian'));
+        
+    }
+
+    public function update(Request $request)
+    {
+        $data = [
+            'nama_barang' => $request->nama_barang,
+            'harga'     => $request->harga,
+            'jumlah' => $request->jumlah,
+            'total' => $request->harga * $request->jumlah
+        ];
+
+        $id = $request->id;
+        if(Pembelian::findOrFail($id)->update($data)){
+            return redirect()->route('admin.pembelian')->with('success', 'Berhasil mengubah data');
+        }else{
+            return redirect()->route('admin.pembelian')->with('error', 'Gagal mengubah data');
+        }
+    }
+
     public function destroy(Request $request)
     {
         if(Pembelian::findOrFail($request->id)->delete()){

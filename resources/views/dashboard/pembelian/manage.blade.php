@@ -12,39 +12,43 @@
                             class="fa-solid fa-circle-plus"></i> Tambah Baru</a>
                 </div>
                 <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama Barang</th>
-                                <th>Harga</th>
-                                <th>Jumlah</th>
-                                <th>Total</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($pembelians as $item)
+                    <div class="table-responsive">
+                        <table id="datatablesSimple">
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_barang }}</td>
-                                    <td>{{ 'Rp. ' . number_format($item->harga, 2, ',', ',') }}</td>
-                                    <td>{{ $item->jumlah }}</td>
-                                    <td>{{ 'Rp. ' . number_format($item->total, 2, ',', ',') }}</td>
-                                    <td>
-                                        <form action="{{ route('admin.pembelian.destroy') }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                            <button type="submit" class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Yakin menghapus data ini?')"><i
-                                                    class="fas fa-times"></i></button>
-                                        </form>
-                                    </td>
+                                    <th>#</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah</th>
+                                    <th>Total</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($pembelians as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama_barang }}</td>
+                                        <td>{{ 'Rp. ' . number_format($item->harga, 2, ',', ',') }}</td>
+                                        <td>{{ $item->jumlah }}</td>
+                                        <td>{{ 'Rp. ' . number_format($item->total, 2, ',', ',') }}</td>
+                                        <td class="d-flex">
+                                            <a href="{{ route('admin.pembelian.edit', $item->id) }}"
+                                                class="btn btn-sm btn-primary me-1"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('admin.pembelian.destroy') }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Yakin menghapus data ini?')"><i
+                                                        class="fas fa-times"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             @if ($message = Session::get('success'))

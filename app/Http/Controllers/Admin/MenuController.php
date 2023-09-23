@@ -104,16 +104,16 @@ class MenuController extends Controller
             $request->menu_img->move(public_path('images/menu'), $imageName);
 
             $menu               = Menu::find($request->menu_id);
+            $menu->category_id = $request->menu_category;
             $menu->thumbnail    = $imageName;
             $menu->name         = $request->menu_name;
-            $menu->category     = $request->menu_category;
             $menu->stock        = $request->menu_stock;
             $menu->price        = $request->menu_price;
             $menu->update();
         }else{
             $menu               = Menu::find($request->menu_id);
+            $menu->category_id = $request->menu_category;
             $menu->name         = $request->menu_name;
-            $menu->category     = $request->menu_category;
             $menu->stock        = $request->menu_stock;
             $menu->price        = $request->menu_price;
             $menu->update();

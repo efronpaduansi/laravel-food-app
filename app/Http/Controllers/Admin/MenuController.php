@@ -58,7 +58,7 @@ class MenuController extends Controller
         $menu->price = $request->menu_price;
         $menu->save();
         
-        return redirect('/menu')->with('success', 'Berhasil menambahkan data!');
+        return redirect('admin/menu')->with('success', 'Berhasil menambahkan data!');
     }
 
     public function show($id)
@@ -118,7 +118,7 @@ class MenuController extends Controller
             $menu->price        = $request->menu_price;
             $menu->update();
         }
-        return redirect('/menu')->with('success', 'Berhasil mengubah data!');
+        return redirect('admin/menu')->with('success', 'Berhasil mengubah data!');
     }
 
 }

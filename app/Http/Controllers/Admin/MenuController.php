@@ -121,4 +121,10 @@ class MenuController extends Controller
         return redirect('admin/menu')->with('success', 'Berhasil mengubah data!');
     }
 
+    public function destroy($id)
+    {
+        $deleteMenuByID = Menu::where('id', $id)->delete();
+        return redirect('admin/menu')->with('success', 'Berhasil menghapus data!');
+    }
+
 }

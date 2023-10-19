@@ -53,7 +53,7 @@ Route::group(
         Route::get('/menu/show/{id}', [MenuController::class, 'show'])->name('admin.menu.show');
         Route::get('/menu/edit/{id}', [MenuController::class, 'edit'])->name('admin.menu.edit');
         Route::put('/menu/update', [MenuController::class, 'update'])->name('admin.menu.update');
-        Route::delete('/menu/delete/{id}', [MenuController::class, 'delete'])->name('admin.menu.delete');
+        Route::delete('/menu/delete/{id}', [MenuController::class, 'destroy'])->name('admin.menu.delete');
         
         Route::get('/guest', [UserController::class, 'getAllGuest'])->name('admin.guest');
         

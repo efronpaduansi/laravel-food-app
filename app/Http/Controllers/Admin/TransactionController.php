@@ -9,6 +9,9 @@ class TransactionController extends Controller
 {
     public function index(Booking $booking)
     {
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
         //Ambil data dari tabel bookings where status = Selesai
         $transactions = $booking->where('status', 'Selesai')->get();
         return view('dashboard.transactions.manage', compact('transactions'));

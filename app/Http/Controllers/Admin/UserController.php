@@ -9,6 +9,9 @@ class UserController extends Controller
 {
     public function getAllGuest()
     {
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
         $guests = User::where('level', 'guest')->get();
         return view('dashboard.guests.manage', compact('guests'));
     }

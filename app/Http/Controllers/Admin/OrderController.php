@@ -8,6 +8,10 @@ use App\Models\Booking;
 class OrderController extends Controller
 {
     public function index(){
+     if(auth()->user()->level != 'admin'){
+          return view('error');
+      }
+      
         $orderList = Booking::orderBy('id', 'desc')->get();
         return view('dashboard.orders.manage', compact('orderList'));
     }

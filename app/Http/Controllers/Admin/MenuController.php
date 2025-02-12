@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Menu;
-use Session;
 use DB;
+use Session;
 use Validator;
+use App\Models\Menu;
+use App\Models\MenuCategory;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MenuController extends Controller
 {
     public function index()
     {
+        if(auth()->user()->level != 'admin'){
+            return view('error');
+        }
         $menus = Menu::all();
         return view('dashboard.menus.manage', compact('menus'));
     }
 
     public function create()
     {
-        return view('dashboard.menus.create');
+        $categories = MenuCategory::latest()->get();
+        return view('dashboard.menus.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -46,14 +51,14 @@ class MenuController extends Controller
          $request->menu_img->move(public_path('images/menu'), $imageName);
 
         $menu = new Menu();
+        $menu->category_id = $request->menu_category;
         $menu->thumbnail = $imageName;
         $menu->name = $request->menu_name;
-        $menu->category = $request->menu_category;
         $menu->stock = $request->menu_stock;
         $menu->price = $request->menu_price;
         $menu->save();
         
-        return redirect('/menu')->with('success', 'Berhasil menambahkan data!');
+        return redirect('admin/menu')->with('success', 'Berhasil menambahkan data!');
     }
 
     public function show($id)
@@ -64,8 +69,9 @@ class MenuController extends Controller
 
     public function edit($id)
     {
+        $categories = MenuCategory::latest()->get();
         $menu = Menu::find($id);
-        return view('dashboard.menus.edit', compact('menu'));
+        return view('dashboard.menus.edit', compact('categories','menu'));
     }
 
     public function update(Request $request)
@@ -98,27 +104,27 @@ class MenuController extends Controller
             $request->menu_img->move(public_path('images/menu'), $imageName);
 
             $menu               = Menu::find($request->menu_id);
+            $menu->category_id = $request->menu_category;
             $menu->thumbnail    = $imageName;
             $menu->name         = $request->menu_name;
-            $menu->category     = $request->menu_category;
             $menu->stock        = $request->menu_stock;
             $menu->price        = $request->menu_price;
             $menu->update();
         }else{
             $menu               = Menu::find($request->menu_id);
+            $menu->category_id = $request->menu_category;
             $menu->name         = $request->menu_name;
-            $menu->category     = $request->menu_category;
             $menu->stock        = $request->menu_stock;
             $menu->price        = $request->menu_price;
             $menu->update();
         }
-        return redirect('/menu')->with('success', 'Berhasil mengubah data!');
+        return redirect('admin/menu')->with('success', 'Berhasil mengubah data!');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $menu = Menu::find($id);
-        $menu->delete();
-        return redirect('/menu')->with('success', 'Berhasil menghapus data!');
+        $deleteMenuByID = Menu::where('id', $id)->delete();
+        return redirect('admin/menu')->with('success', 'Berhasil menghapus data!');
     }
+
 }

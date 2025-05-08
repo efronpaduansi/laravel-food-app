@@ -19,7 +19,7 @@ class HomeController extends Controller
         $statusWaitingConfirm = 'Diterima';
         $statusDone = 'Selesai';
         $statusCancelled = 'Dibatalkan';
-        $totalMenu = Menu::latest()->count();
+        $totalMenu = Menu::count();
         $orderWaitingConfirm = Booking::where('status', $statusWaitingConfirm)->count();
         $orderDone = Booking::where('status', $statusDone)->count();
         $orderCancelled = Booking::where('status', $statusCancelled)->count();
